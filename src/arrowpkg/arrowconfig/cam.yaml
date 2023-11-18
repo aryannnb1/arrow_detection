@@ -1,0 +1,31 @@
+# arrow_detection_pkg/config/camera.yaml
+
+# Camera settings
+image_width: 640
+image_height: 480
+video_device: /dev/video2
+pixel_format: yuyv
+color_format: yuv422p
+camera_frame_id: usb_cam
+io_method: mmap
+
+# Camera calibration parameters
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [fx, 0, cx, 0, fy, cy, 0, 0, 1]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [k1, k2, t1, t2, k3]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [fx, 0, cx, 0, 0, fy, cy, 0, 0, 0, 1, 0]
+rectified_image_width: 640
+rectified_image_height: 480
