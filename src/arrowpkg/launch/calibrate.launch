@@ -1,0 +1,20 @@
+<launch>
+    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <node name="camera_calibration" pkg="arrowpkg" type="cameracalibrator.py" output="screen" />
+    <param name="video_device" value="/dev/video2" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="color_format" value="yuv422p" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <!-- <param name="output_calibration" value="/home/aryan/your_camera.yaml" /> -->
+    <param name="output_calibration" value="/home/aryan/.ros/camera_info/head_camera.yaml" />
+
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/usb_cam/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find teleop_pkg)/rviz/usb_cam.rviz" required="true" /> -->
+</launch>
